@@ -8,8 +8,8 @@ var questions = [{
 			"option": "273&deg;C",
 			"isCorrect": false
 		},{
-			"option": "-273K",
-			"isCorrect": false
+			"option": "0K",
+			"isCorrect": true
 		},{
 			"option": "0&deg;F",
 			"isCorrect": false
@@ -20,10 +20,10 @@ var questions = [{
 	"question":"What tempature is freezing?",
 	"options": [
 		{
-			"option": "-273&deg;C",
+			"option": "-32&deg;F",
 			"isCorrect": false
 		},{
-			"option": "273&deg;C",
+			"option": "32&deg;C",
 			"isCorrect": false
 		},{
 			"option": "0&deg;C",

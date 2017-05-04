@@ -15,9 +15,16 @@ function nextQuestion (e) {
 
 	questionEl.innerHTML = item.question
 
+	var numberOfCorrectAnswers = 0
+	item.options.forEach (function (option) {
+		if (option.isCorrect) {
+			numberOfCorrectAnswers++
+		}
+	})
+	var inputType = numberOfCorrectAnswers > 1 ? "checkbox" : "radio"
 	optionsFormEl.innerHTML = ""
 	item.options.forEach (function (option) {
-		optionsFormEl.innerHTML += "<input class='option' type='radio' name='question' value='"+ option.isCorrect + "'>" + option.option + "<br />"
+		optionsFormEl.innerHTML += "<input class='option' type='"+inputType+"' name='question' value='"+ option.isCorrect + "'>" + option.option + "<br />"
 	})
 	optionsFormEl.innerHTML += "<input type='submit' value='save' />"
 
@@ -71,15 +78,17 @@ function done () {
 	containerEl.innerHTML += "Correct questions: " + correctCounter + "<br />"
 	containerEl.innerHTML += "Wrong questions: " + wrongCounter + "<br />"
 	containerEl.innerHTML += "Total questions: " + questions.length + "<br />"
-	containerEl.innerHTML += "<br />"
-	containerEl.innerHTML += "<h2>Details</h2>"
-
-	wrongDetails.forEach (function (item) {
-		containerEl.innerHTML += item.question + "<br />"
-		item.options.forEach (function (option) {
-			if (option.isCorrect) {
-				containerEl.innerHTML += "<pre>&#9;</pre>" + option.option + "<br />"
-			}
+	
+	if (wrongDetails.length > 0) {
+		containerEl.innerHTML += "<br />"
+		containerEl.innerHTML += "<h2>Details</h2>"
+		wrongDetails.forEach (function (item) {
+			containerEl.innerHTML += item.question + "<br />"
+			item.options.forEach (function (option) {
+				if (option.isCorrect) {
+					containerEl.innerHTML += "<pre>&#9;</pre>" + option.option + "<br />"
+				}
+			})
 		})
-	})
+	}
 }
